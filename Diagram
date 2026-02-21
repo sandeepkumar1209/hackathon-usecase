@@ -1,10 +1,4 @@
                          ┌──────────────────────────┐
-                         │       Developer          │
-                         │  Code + Dockerfile       │
-                         └────────────┬─────────────┘
-                                      │ git push
-                                      ▼
-                         ┌──────────────────────────┐
                          │        GitHub Repo       │
                          │ - App code               │
                          │ - Dockerfile             │
