@@ -43,10 +43,11 @@
             │                                                 │
             ▼                                                 ▼
                     ┌──────────────────────────────────────┐
-                    │        Google Kubernetes Engine       │
+                    │        Google Kubernetes Engine      │
                     │--------------------------------------│
                     │  Patient Service (Pod)               │
-                    │  Appointment Service (Pod)           │
+                    │  Appointment Service (Pod)           |
+                    │  Order Service (Pod)                 |
                     │  Service + Ingress                   │
                     └────────────┬─────────────────────────┘
                                  │
