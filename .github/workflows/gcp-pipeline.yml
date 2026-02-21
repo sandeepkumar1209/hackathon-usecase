@@ -99,6 +99,11 @@ jobs:
           gcloud container clusters get-credentials $CLUSTER_NAME \
             --region $REGION \
             --project $PROJECT_ID
+            
+      - name: Inject Image Registry
+        run: |
+          REGISTRY=$REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME
+          sed -i "s|<YOUR_REGISTRY>|$REGISTRY|g" k8s/*.yaml
 
       - name: Deploy to GKE
         run: kubectl apply -f k8s/
