@@ -1,0 +1,58 @@
+                         ┌──────────────────────────┐
+                         │       Developer          │
+                         │  Code + Dockerfile       │
+                         └────────────┬─────────────┘
+                                      │ git push
+                                      ▼
+                         ┌──────────────────────────┐
+                         │        GitHub Repo       │
+                         │ - App code               │
+                         │ - Dockerfile             │
+                         │ - Terraform              │
+                         │ - Helm/K8s manifests     │
+                         └────────────┬─────────────┘
+                                      │
+                                      ▼
+                      ┌─────────────────────────────────┐
+                      │         GitHub Actions CI       │
+                      │---------------------------------│
+                      │ 1. Build Application            │
+                      │ 2. Run Unit Tests               │
+                      │ 3. Build Docker Image           │
+                      │ 4. Push Image to GCR            │
+                      │ 5. Terraform Init               │
+                      │ 6. Terraform Plan               │
+                      │ 7. Terraform Apply              │
+                      └────────────┬────────────────────┘
+                                   │
+             ┌─────────────────────┼─────────────────────────┐
+             │                     │                         │
+             ▼                     ▼                         ▼
+
+   ┌────────────────┐     ┌──────────────────┐      ┌────────────────────┐
+   │ Google Container│     │ Terraform Remote │      │ GCP Infrastructure │
+   │ Registry (GCR) │     │ State (GCS)      │      │ Provisioned via TF │
+   └────────┬───────┘     │ - Versioning     │      │--------------------│
+            │             │ - State Locking  │      │ VPC                │
+            │             └──────────────────┘      │ Public Subnets     │
+            │                                       │ Private Subnets    │
+            │                                       │ IAM Roles          │
+            │                                       │ Firewall Rules     │
+            │                                       │ GKE Cluster        │
+            │                                       └─────────┬──────────┘
+            │                                                 │
+            ▼                                                 ▼
+                    ┌──────────────────────────────────────┐
+                    │        Google Kubernetes Engine       │
+                    │--------------------------------------│
+                    │  Patient Service (Pod)               │
+                    │  Appointment Service (Pod)           │
+                    │  Service + Ingress                   │
+                    └────────────┬─────────────────────────┘
+                                 │
+                                 ▼
+                      ┌──────────────────────────┐
+                      │  Cloud Logging &        │
+                      │  Cloud Monitoring       │
+                      │ (Logs, Metrics, Alerts) │
+                      └──────────────────────────┘
