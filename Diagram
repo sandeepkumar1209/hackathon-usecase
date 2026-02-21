@@ -30,7 +30,7 @@
              ▼                     ▼                         ▼
 
    ┌────────────────┐     ┌──────────────────┐      ┌────────────────────┐
-   │ Google Container│     │ Terraform Remote │      │ GCP Infrastructure │
+   │ Google Container│    │ Terraform Remote │      │ GCP Infrastructure │
    │ Registry (GCR) │     │ State (GCS)      │      │ Provisioned via TF │
    └────────┬───────┘     │ - Versioning     │      │--------------------│
             │             │ - State Locking  │      │ VPC                │
